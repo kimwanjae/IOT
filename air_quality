@@ -1,0 +1,23 @@
+void setup() {
+  Serial.begin(9600);
+  pinMode(13,OUTPUT);
+  pinMode(7,INPUT);
+  pinMode(6,INPUT);
+}  
+void loop() {  
+  int sensorValue = analogRead(A0);
+  delay(500);
+  Serial.print("air quality=");
+  Serial.printin(sensorValue);
+  
+    if(sensorValue > 500 ) {
+      digitalWrite(13,HIGH);
+      digitalWrite(7,HIGH);
+      digitalWrite(6,LOW);
+    } else {
+      digitalWrite(13,LOW);
+      digitalWrite(7,LOW);
+      digitalWrite(6,HIGH);
+    }  
+    delay(1000);  
+}
