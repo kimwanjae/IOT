@@ -1,0 +1,20 @@
+#include "DHT.h"                           // DHT.h 라이브러리를 포함한다.
+#define DHTPIN 7                          // DHTPIN을 디지털 2번핀으로 정의한다.
+#define DHTTYPE DHT11              // DHTTYPE을 DHT11로 정의한다.
+DHT dht(DHTPIN, DHTTYPE);       // DHT설정 - (디지털2, DHT11)
+
+void setup() {
+  Serial.begin(9600);                  // 시리얼 통신을 시작한다. 속도는9600
+}
+
+void loop() {
+  int h = dht.readHumidity();         // 변수 선언 (h는 습도)
+  int t = dht.readTemperature();     // 변수 선언 (t는 온도)
+  Serial.print("Humidity: ");          // Humidity를 출력
+  Serial.print(h);                           // h(습도 값) 출력
+  Serial.print(" %\t");                   //  %를 출력
+  Serial.print("Temperature: ");    // Temperature를 출력
+  Serial.print(t);                            // t(온도 값) 출력
+  Serial.println(" C");                    // C 출력 후 줄바꿈
+  delay(1000);                                // 3초 딜레이
+}
