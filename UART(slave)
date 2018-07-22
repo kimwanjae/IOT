@@ -1,0 +1,13 @@
+//송신부 tx와 수신부 rx 연결 
+//gnd와 gnd 
+
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop(){
+  while(Serial.available()){
+    char data = Serial.read();
+    Serial.print(data);
+  }  
+}
