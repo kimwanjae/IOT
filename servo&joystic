@@ -1,1 +1,38 @@
+/*
+GND-GND    +5V-5V    VRx-A0
+*/
 
+#include <Servo.h>
+
+//서보 변수
+Servo myservo;  
+
+//joystick 관련
+#define TOLERANCE   10
+#define CENTER_POS  510
+#define IS_CENTER(x) ((x >= (CENTER_POS-TOLERANCE))&&(x <= (CENTER_POS+TOLERANCE)))
+
+//핀 설정
+const int servoPin = 9; 
+const int joyXPin = 0; //or A0
+
+void setup() {
+  myservo.attach(servoPin);  // 서보와 핀 연결
+}
+
+void loop() {
+  //조이스틱 X축 값 일어오기
+  unsigned int posX = analogRead(joyXPin);
+  //X축이 가운데에 있지 않다면
+  if(!IS_CENTER(posX)){
+    //가운데보다 값이 크다면 오른쪽으로 움직인 상태
+    if(posX > CENTER_POS){
+      myservo.write(0); //0도    
+    }else{ //왼쪽으로 움직인 상태        
+      myservo.write(180); //180도     
+    }
+  }else { //가운데에 위치함 
+    myservo.write(90);  //90도             
+  }
+  delay(100); //100ms 대기 후 처음부터 다시
+}
