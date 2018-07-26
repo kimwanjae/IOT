@@ -34,5 +34,5 @@ void loop() {
   }else { //가운데에 위치함 
     myservo.write(90);  //90도             
   }
-  delay(100); //100ms 대기 후 처음부터 다시
+  delay(1000); //1000ms 대기 후 처음부터 다시
 }
